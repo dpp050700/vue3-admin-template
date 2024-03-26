@@ -45,11 +45,12 @@ export const basePermissions = [
         code: 'ShowDocs',
         name: '列表页生成',
         type: 'MENU',
-        path: 'https://docs.isme.top/web/#/624306705/188522224',
+        path: '/tableConfig',
         icon: 'i-me:docs',
         order: 1,
         enable: true,
         show: true,
+        component: "/src/views_development/tableConfig/index.vue",
       },
       {
         code: 'ApiFoxDocs',
