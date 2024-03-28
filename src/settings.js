@@ -51,6 +51,7 @@ export const basePermissions = [
         enable: true,
         show: true,
         component: "/src/views_development/tableConfig/index.vue",
+        layout: 'empty'
       },
       {
         code: 'ApiFoxDocs',
@@ -62,6 +63,18 @@ export const basePermissions = [
         order: 2,
         enable: true,
         show: true,
+      },
+      {
+        code: 'developDocs',
+        name: '开发文档',
+        type: 'MENU',
+        path: '/developDocs',
+        icon: 'i-me:docs',
+        order: 1,
+        enable: true,
+        show: true,
+        component: "/src/views_development/docs/form/index.vue",
+        layout: 'empty'
       },
     ],
   },
