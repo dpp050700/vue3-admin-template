@@ -1,24 +1,24 @@
 <template>
-  <MeForm :model="formValue" :config="formConfig" v-model="formValue">
+  <MeForm :config="formConfig" v-model="formModel">
     <div>
       <n-button>提交</n-button>
     </div>
   </MeForm>
   <n-button @click="resetForm">重置表单</n-button>
+  <n-button @click="setForm">设置表单</n-button>
+  <n-button @click="submitForm">获取表单</n-button>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import MeForm from '../../../components/me/form/index.vue'
+import {MeForm} from '@/components'
 import {NButton} from 'naive-ui'
 export default defineComponent({
   components:{MeForm},
   setup(){
-    const formValue = ref({
-      'user.name': '112'
-    })
+    const {useForm} = MeForm
 
-    const formConfig = ref({
+    const {formModel,formConfig, setFormValue, resetFormValue, getFormValue} = useForm({
       inline: true,
       size: 'large',
       labelWidth: '100px',
@@ -35,19 +35,42 @@ export default defineComponent({
           label: '用户名',
           path: 'user.name',
           deps: [], // TODO 联动字段
-          value: ''
+          value: '',
+          key: 'userName',
+          defaultValue: '2224445'
+        },
+        {
+          type: 'input', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+            placeholder: '请输入年龄',
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '年龄',
+          path: 'age',
+          deps: [], // TODO 联动字段
+          value: '',
+          key: 'age'
         }
       ]
-    })
-
+    }, {user:{name:'11'}})
     const resetForm = () =>{
-      formValue.value.userName = ''
+      resetFormValue()
+    }
+
+    const submitForm = () => {
+      getFormValue()
+    }
+
+    const setForm = () => {
+      setFormValue({user: {name: '本名杨不悔'}})
     }
 
     return {
-      formValue,
+      formModel,
       formConfig,
-      resetForm
+      setForm,
+      resetForm,
+      submitForm
     }
   }
 })

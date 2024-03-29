@@ -3,7 +3,7 @@
     {{ JSON.stringify(modelValue) }}
     <n-form :size="config.size" :inline="config.inline" :label-width="config.labelWidth" labelPlacement="left" :model="modelValue">
       <n-form-item v-for="field in config.fields" :label="field.label" :path="field.path">
-        <InputField v-if="field.type === 'input'" v-bind="field.fieldProps" v-model:value="modelValue[field.path]"/>
+        <InputField v-if="field.type === 'input'" v-bind="field.fieldProps" v-model:value="modelValue[field.key]"/>
       </n-form-item>
       <n-form-item v-if="$slots.default">
         <slot />
