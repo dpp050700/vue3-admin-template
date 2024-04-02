@@ -1,9 +1,17 @@
+import {isRef, isReactive, toRaw} from 'vue'
 const useForm = (config, initFormData = {}) => {
 
   const formConfig = ref({ ...config })
 
   const getDefaultValueByFieldType = (type) => {
     if(type === 'input') return ''
+    if(type === 'radio') return ''
+    if(type === 'rate') return null
+    if(type === 'inputNumber') return null
+    if(type === 'switch') return false
+    if(type === 'checkbox') return []
+
+    return null
   }
 
   const getFormModel = (formValue, fillDetault = false) => {
@@ -21,13 +29,14 @@ const useForm = (config, initFormData = {}) => {
       path.reduce((prev, item, index) => {
         if(index === path.length - 1) {
           let value = prev[item]
+          
           if(defaultValue !== undefined && value === undefined && fillDetault) {
             value = defaultValue
           }
           if(value === undefined) {
             value = getDefaultValueByFieldType(field.type)
           }
-          data[field.key] = value // TODO 根据 field 的类型默认赋值
+          data[field.key] = value
         }
         return prev[item] || {}
       }, formValue)
@@ -56,7 +65,8 @@ const useForm = (config, initFormData = {}) => {
 
       path.reduce((prev, item, index) => {
         if(index === path.length - 1) {
-          prev[item] =  formModel.value[field.key]
+          console.log(isReactive(formModel.value[field.key]))
+          prev[item] = isReactive(formModel.value[field.key]) ? toRaw(formModel.value[field.key]) : formModel.value[field.key]// 判断是否是isReactive
         }else {
           if(prev[item] === undefined) {
             prev[item] = {}
@@ -75,6 +85,12 @@ const useForm = (config, initFormData = {}) => {
 
   // 单独设置某个字段的值
   const setFieldValue = () => {}
+
+  // 更新某个表单项
+  const updateField = () => {}
+
+  // 更新所有的表单项目
+  const updateFields = () => {}
 
   return {
     formModel,

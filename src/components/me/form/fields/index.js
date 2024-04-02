@@ -1,1 +1,7 @@
-export {default as InputField} from './input.vue'
+export {default as InputField} from './input/index.vue'
+export {default as RadioField} from './radio/index.vue'
+export {default as CheckboxField} from './checkbox/index.vue'
+export {default as SelectField} from './select/index.vue'
+export {default as SwitchField} from './switch/index.vue'
+export {default as RateField} from './rate/index.vue'
+export {default as InputNumberField} from './inputNumber/index.vue'

@@ -35,7 +35,6 @@ export default defineComponent({
           label: '用户名',
           path: 'user.name',
           deps: [], // TODO 联动字段
-          value: '',
           key: 'userName',
           defaultValue: '2224445'
         },
@@ -48,10 +47,82 @@ export default defineComponent({
           label: '年龄',
           path: 'age',
           deps: [], // TODO 联动字段
-          value: '',
           key: 'age'
-        }
-      ]
+        },
+        {
+          type: 'radio', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+            
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '性别',
+          path: 'sex',
+          deps: [], // TODO 联动字段
+          key: 'sex',
+          options: [{label: '男', value: '1'},{label:'女', value:'0'}],
+          defaultValue :'1'
+        },
+        {
+          type: 'checkbox', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '爱好',
+          path: 'love',
+          deps: [], // TODO 联动字段
+          key: 'love',
+          options: [{label: '排球', value: '3'},{label: '乒乓球', value: '2'},{label: '篮球', value: '1'},{label:'足球', value:'0'}],
+          defaultValue : ['2']
+        },
+        {
+          type: 'rate', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '评分',
+          path: 'score',
+          deps: [], // TODO 联动字段
+          key: 'score',
+          defaultValue: 0
+        },
+        {
+          type: 'inputNumber', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '个数',
+          path: 'count',
+          deps: [], // TODO 联动字段
+          key: 'count',
+          defaultValue: 10
+        },
+        {
+          type: 'switch', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '是否启用',
+          path: 'enable',
+          deps: [], // TODO 联动字段
+          key: 'enable',
+          defaultValue: true
+        },
+
+        {
+          type: 'select', // input、number、money、date、daterange、step、custom...
+          fieldProps: {
+            options: [{label: '排球', value: '3'},{label: '乒乓球', value: '2'},{label: '篮球', value: '1'},{label:'足球', value:'0'}],
+            style: {width: '200px'}
+          }, // 组件参数
+          labelWidth: 60,//number
+          label: '爱好',
+          path: 'select',
+          deps: [], // TODO 联动字段
+          key: 'select',
+          defaultValue : ['2']
+        },
+      ],
+      style: {'flex-wrap': 'wrap'}
     }, {user:{name:'11'}})
     const resetForm = () =>{
       resetFormValue()
@@ -62,7 +133,7 @@ export default defineComponent({
     }
 
     const setForm = () => {
-      setFormValue({user: {name: '本名杨不悔'}})
+      setFormValue({user: {name: '本名杨不悔'}, sex: '0'})
     }
 
     return {
